@@ -9,17 +9,21 @@
 
 <body>
 
-    <div class="content">
-        <h1 id="MainHeader">Find your audience...</h1>
-        
-        <input type="text" id="input">
-
-        <button id="GetFBDataButton">Get FB Data</button>
-        
-        <div id="result"></div>
-        
+    <div class="body">
+        <div class="content">
+            <h1 id="MainHeader">Find your audience...</h1>
+            
+            <input type="text" id="input" autofocus placeholder="Your keyword">
+    
+            <button id="GetFBDataButton">Get FB Data</button>
+            
+            <div id="resultDiv"></div>
+            <h2 id="keyword"></h2>
+            <pre id="result"></pre>
+            
+            </div>
+    
         </div>
-
     </div>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
@@ -32,6 +36,10 @@ const btnclick = document.getElementById('GetFBDataButton');
 btnclick.addEventListener('click', function (target) {
  
     target = document.getElementById('input').value;
+    document.getElementById('input').value = '';
+    document.getElementById('keyword').textContent = 'Keyword: \'' + target + '\'';
+    document.getElementById('result').textContent = '';
+
    //send the info to main process . we can pass any arguments as second param.
    ipcRenderer.send("btnclick", target); // ipcRender.send will pass the information to main process
 });

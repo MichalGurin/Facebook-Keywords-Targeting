@@ -1,17 +1,41 @@
 body 
 {
     background-color: lightblue;
+    text-align: center
 }
   
 h1 
 {
     color: white;
     text-align: center;
+    vertical-align: center;
+}
+
+h2
+{
+    color: white;
+    text-align: center;
+    vertical-align: center;
 }
   
-p 
+pre
 {
     font-family: verdana;
-    font-size: 50px;
+    font-size: 15px;
     margin: 10px;
+    text-align: center;
+    vertical-align: center;
+}
+
+div.content
+{
+    align-content: center;
+    align-items: center;
+}
+
+button
+{
+    align-content: center;
+    align-items: center;
+    vertical-align: center;
 }
