@@ -16,7 +16,7 @@
 
         <button id="GetFBDataButton">Get FB Data</button>
         
-        <div id="message"></div>
+        <div id="result"></div>
         
         </div>
 
@@ -29,15 +29,16 @@
 const ipcRenderer = require('electron').ipcRenderer; 
  
 const btnclick = document.getElementById('GetFBDataButton');
-btnclick.addEventListener('click', function () {
+btnclick.addEventListener('click', function (target) {
  
+    target = document.getElementById('input').value;
    //send the info to main process . we can pass any arguments as second param.
-   ipcRenderer.send("btnclick"); // ipcRender.send will pass the information to main process
+   ipcRenderer.send("btnclick", target); // ipcRender.send will pass the information to main process
 });
 
 //ipcRenderer.on will receive the “btnclick-task-finished'” info from main process 
 ipcRenderer.on('btnclick-task-finished', function(event, message) {
-    document.getElementById('message').textContent = message;        //show message . Here we can use jquery                                        
+    document.getElementById('result').textContent = message;        //show message . Here we can use jquery                                        
  });
  
 </script>

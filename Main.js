@@ -58,21 +58,11 @@ app.on('activate', () => {
 const {ipcMain}  = require('electron');
 
 //ipcMain.on will receive the “btnclick” info from renderprocess 
-ipcMain.on("btnclick",function (event) {
+ipcMain.on("btnclick", function (event, target) {
 
-  //create new window
-  var newWindow    = new BrowserWindow({ width: 450, height: 300, show: 
-                                        false,webPreferences: {webSecurity: false,plugins:
-                                        true,nodeIntegration: false} });  // create a new window
-
-  var facebookURL  =  "https://www.facebook.com"; // loading an external url. We can load our own another html file, like how we load index.html earlier
-
-  newWindow.loadURL(facebookURL);
-  newWindow.show();
-                             
  // inform the render process that the assigned task finished. Show a message in html
  // event.sender.send in ipcMain will return the reply to renderprocess
- GetData('Golf',function(result) {
+ GetData(target, function(result) {
     event.sender.send("btnclick-task-finished", result);
  });
 
@@ -114,9 +104,7 @@ const apiURl = 'https://graph.facebook.com/search?type=adinterest&q=[' +  target
 
       console.log(FinalString);
       
-      result('' + FinalString);
-      //return FinalString;
-
+      result(FinalString);
     });
 
   }).on("error", (err) => {
