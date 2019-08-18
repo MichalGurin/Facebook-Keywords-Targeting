@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="CSS.css">
+    <title>Page Title</title>
+</head>
+
+<body>
+
+    <div class="content">
+        <h1 id="MainHeader">Find your audience...</h1>
+        
+        <input type="text" id="input">
+
+        <button id="GetFBDataButton">Get FB Data</button>
+        
+        <div id="message"></div>
+        
+        </div>
+
+    </div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/javascript">
+
+// include the ipc module to communicate with main process.
+const ipcRenderer = require('electron').ipcRenderer; 
+ 
+const btnclick = document.getElementById('GetFBDataButton');
+btnclick.addEventListener('click', function () {
+ 
+   //send the info to main process . we can pass any arguments as second param.
+   ipcRenderer.send("btnclick"); // ipcRender.send will pass the information to main process
+});
+
+//ipcRenderer.on will receive the “btnclick-task-finished'” info from main process 
+ipcRenderer.on('btnclick-task-finished', function(event, message) {
+    document.getElementById('message').textContent = message;        //show message . Here we can use jquery                                        
+ });
+ 
+</script>
+
+</body>
+</html> 
