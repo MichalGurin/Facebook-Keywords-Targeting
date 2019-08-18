@@ -9,6 +9,7 @@ function createWindow () {
   window = new BrowserWindow({
     width: 800,
     height: 600,
+    autoHideMenuBar: true,
     webPreferences: {
       nodeIntegration: true
     }
@@ -90,18 +91,18 @@ const apiURl = 'https://graph.facebook.com/search?type=adinterest&q=[' +  target
       // The whole response has been received. Print out the result.
       resp.on('end', () => {
 
-        console.log("\n  Parsed JSON: \n");
+        //console.log("\n  Parsed JSON: \n");
 
         dataArray = JSON.parse(jsonString);
 
         for(var i = 0; i < dataArray.data.length; i++)
         {
           FinalString += dataArray.data[i].name + '\nAudience size: ';
-          FinalString += dataArray.data[i].audience_size + '\n \n';
+          FinalString += dataArray.data[i].audience_size + '\n --- \n';
 
         }
 
-      console.log(FinalString);
+      //console.log(FinalString);
       
       result(FinalString);
     });
