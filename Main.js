@@ -1,3 +1,4 @@
+//C:\Users\micha\node_modules\electron\dist\electron.exe D:\ElectronRepositories\FBTargeting\main.js
 const { app, BrowserWindow } = require('electron')
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -71,6 +72,7 @@ ipcMain.on("btnclick", function (event, target) {
 
 
 const https = require('https');
+const HRNumbers = require('human-readable-numbers');
 
 async function GetData(target, result)
 {
@@ -98,7 +100,9 @@ const apiURl = 'https://graph.facebook.com/search?type=adinterest&q=[' +  target
         for(var i = 0; i < dataArray.data.length; i++)
         {
           FinalString += dataArray.data[i].name + '\nAudience size: ';
-          FinalString += dataArray.data[i].audience_size + '\n --- \n';
+          FinalString += HRNumbers.toHumanString(dataArray.data[i].audience_size) + '\nCategory: ';
+          FinalString += dataArray.data[i].topic + '\n --- \n';
+
 
         }
 

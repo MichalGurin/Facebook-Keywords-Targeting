@@ -6,10 +6,8 @@
   "author": "michal.gurin@gmail.com>",
   "main": "./main.js",
   "scripts": {
-    "postinstall": "install-app-deps",
-    "start": "npm install && electron ./app",
-    "pack": "build --dir",
-    "dist": "build"
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "build": {
     "appId": "1",
@@ -38,13 +36,11 @@
       "icon": "build/icon.ico"
     }
   },
-  "dependencies": {},
+  "dependencies": {
+    "human-readable-numbers": "^0.9.5"
+  },
   "devDependencies": {
     "electron": "latest",
     "electron-builder": "^21.2.0"
-  },
-"scripts": {
-  "pack": "electron-builder --dir",
-  "dist": "electron-builder"
-}
+  }
 }
