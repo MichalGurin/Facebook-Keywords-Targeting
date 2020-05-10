@@ -53,15 +53,12 @@ app.on('activate', () => {
   }
 })
 
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
 
 
 const {ipcMain}  = require('electron');
 
 //ipcMain.on will receive the “btnclick” info from renderprocess 
 ipcMain.on("btnclick", function (event, target) {
-
  // inform the render process that the assigned task finished. Show a message in html
  // event.sender.send in ipcMain will return the reply to renderprocess
  GetData(target, function(result) {
@@ -69,7 +66,6 @@ ipcMain.on("btnclick", function (event, target) {
  });
 
 });
-
 
 const https = require('https');
 const HRNumbers = require('human-readable-numbers');
@@ -88,7 +84,6 @@ const apiURl = 'https://graph.facebook.com/search?type=adinterest&q=[' +  target
         jsonString += chunk;
       });
 
-
       let dataArray = '';
       // The whole response has been received. Print out the result.
       resp.on('end', () => {
@@ -102,8 +97,6 @@ const apiURl = 'https://graph.facebook.com/search?type=adinterest&q=[' +  target
           FinalString += dataArray.data[i].name + '\nAudience size: ';
           FinalString += HRNumbers.toHumanString(dataArray.data[i].audience_size) + '\nCategory: ';
           FinalString += dataArray.data[i].topic + '\n --- \n';
-
-
         }
 
       //console.log(FinalString);

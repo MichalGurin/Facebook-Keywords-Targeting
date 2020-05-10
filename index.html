@@ -36,12 +36,15 @@ const btnclick = document.getElementById('GetFBDataButton');
 btnclick.addEventListener('click', function (target) {
  
     target = document.getElementById('input').value;
-    document.getElementById('input').value = '';
-    document.getElementById('keyword').textContent = '\'' + target + '\'';
-    document.getElementById('result').textContent = '';
+    if(target != '')
+    {
+        document.getElementById('input').value = '';
+        document.getElementById('keyword').textContent = '\'' + target + '\'';
+        document.getElementById('result').textContent = '';
 
-   //send the info to main process . we can pass any arguments as second param.
-   ipcRenderer.send("btnclick", target); // ipcRender.send will pass the information to main process
+        //send the info to main process . we can pass any arguments as second param.
+        ipcRenderer.send("btnclick", target); // ipcRender.send will pass the information to main process
+    }
 });
 
 //ipcRenderer.on will receive the “btnclick-task-finished'” info from main process 
